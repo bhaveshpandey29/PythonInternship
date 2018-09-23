@@ -30,7 +30,6 @@ class Executive:
     def RaiseEmployee(self,Efname,Econtact,EnewPay):
         try:
             flag = 0
-            salerr = 0
             db,cursor = connect()
             update_query = f"UPDATE executive SET executive_basicpay = {EnewPay} WHERE executive_fname like '{Efname}' and executive_contact like '{Econtact}';"
             search_query = f"select * from executive where 'executive_fname' = '{Efname}' and executive_contact like {Econtact}"
@@ -61,5 +60,32 @@ class Executive:
         finally:
             db.close()
 
+    def removeEmployee(self,Efname,Elname):
+        try:
+            flag = 0
+            salerr = 0
+            db,cursor = connect()
+            remove_query = f"DELETE from executive WHERE executive_fname = '{Efname}' and executive_lname = '{Elname}'"
+            search_query = f"select * from executive where executive_fname = '{Efname}' and executive_lname =  '{Elname}'"
+            cursor.execute(search_query)
+            rs = cursor.fetchall()
+            if(len(rs)>0):
+                cursor.execute(remove_query)
+                db.commit() 
+                #flag = 1
+            else:
+                flag = 1                                                  
+        except Exception as e:
+            print("Something went wrong!")
+            db.rollback()
+            raise e
+        else:
+            if(flag == 0):
+                print(f"Great! Now {Efname} {Elname} is removed from your company's record.")  
+            else:
+                print(f"Seems like the employee {Efname} {Elname} doesn't exists, Please enter the correct details next time.")    
+        finally:
+            db.close()
+
 # e = Executive()
-# e.RaiseEmployee('Bhavesh','9930942566',390001)
+# e.removeEmployee('Test','One')

@@ -63,3 +63,29 @@ class Salaried:
 
 # s = Salaried()
 # s.RaiseEmployee('Test','36521355','1400')
+
+    def removeEmployee(self,Efname,Elname):
+        try:
+            flag = 0
+            salerr = 0
+            db,cursor = connect()
+            remove_query = f"DELETE from salaried WHERE salaried_fname = '{Efname}' and salaried_lname = '{Elname}'"
+            search_query = f"select * from salaried where salaried_fname = '{Efname}' and salaried_lname =  '{Elname}'"
+            cursor.execute(search_query)
+            rs = cursor.fetchall()
+            if(len(rs)>0):
+                cursor.execute(remove_query)
+                db.commit()              
+            else:
+                flag = 1                                                  
+        except Exception as e:
+            print("Something went wrong!")
+            db.rollback()
+            raise e
+        else:
+            if(flag == 0):
+                print(f"Great! Now {Efname} {Elname} is removed from your company's record.")  
+            else:
+                print(f"Seems like the employee {Efname} {Elname} doesn't exists, Please enter the correct details next time.")    
+        finally:
+            db.close()
