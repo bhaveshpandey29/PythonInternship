@@ -44,5 +44,5 @@ class Toss:
                 db.close()
         else:
             print("Thank you for chosing our coin flip simulation".center(100,'*'))
-            print(f"Final Count:\n\n\tHeads count = {getHeadsCount()}\n\tTails count = {getHeadsCount()}")
+            print(f"Final Count:\n\n\tHeads count = {getHeadsCount()}\n\tTails count = {getTailsCount()}")
             break

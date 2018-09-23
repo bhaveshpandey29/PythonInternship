@@ -16,4 +16,5 @@ def getTailsCount():
     tailscount = int(count[0])
     return tailscount
 
-#print(getHeadsCount())
+# print(getHeadsCount())
+# print(getTailsCount())
