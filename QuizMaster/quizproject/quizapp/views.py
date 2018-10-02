@@ -18,6 +18,16 @@ def details(request,id):
     }
     return render(request,'details.html',context)
 
+def result(request,result,id):
+    if(request.method == 'POST'):
+        qz = Quiz.objects.get(id = id)
+        context = {
+            'qz' : qz
+        }  
+        return render(request,'result.html',context)
+    else:
+        pass
+
 def add(request):
     if(request.method == 'POST'):
         question = request.POST['question']
