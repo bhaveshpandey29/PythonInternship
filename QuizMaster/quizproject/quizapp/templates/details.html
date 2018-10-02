@@ -1,0 +1,26 @@
+{% include 'partials/header.html' %}
+<div class='jumbotron' style='max-width: 500px;margin-left: 450px'class= 'form-group'>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label><h3>{{qz.question}}</h3></label>
+        </div>
+        <div class='radio'>
+            <label><input type="radio" value="{{qz.option1}}" id="">{{qz.option1}}</label>
+        </div>
+        <div class='radio'>
+            <label><input type="radio" value="{{qz.option2}}" id="">{{qz.option3}}</label>
+        </div>
+        <div class='radio'>
+            <label><input type="radio" value="{{qz.option3}}" id="">{{qz.option3}}</label>
+        </div>
+        <div class='radio'>
+            <label><input type="radio" value="{{qz.option4}}" id="">{{qz.option4}}</label>
+        </div><br><br>
+        <center><input class = 'btn btn-warning btn-sm' type="submit" value="Next" /></center>
+    </form>
+
+</div>
+{% include 'partials/footer.html' %}
+
+<!-- hello from details -->
