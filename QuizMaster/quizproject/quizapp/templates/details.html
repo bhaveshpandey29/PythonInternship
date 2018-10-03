@@ -1,0 +1,63 @@
+{% include 'partials/header.html' %}
+<script>
+        function checkAnswer(){
+            var x = document.forms['myForm']['answer'].value;
+            if(x == "{{qz.answer}}"){
+                document.getElementById("res").innerHTML = "That's a correct answer";
+                return false;
+            }
+            else if(x == ""){
+                alert("Please enter the answer");
+                return false;
+            }
+            else if(x != "{{qz.answer}}"){
+                document.getElementById("res").innerHTML = "That's an incorrect answer";
+                return false;
+            }
+        }
+</script>
+<div class='jumbotron' style='max-width: auto;margin: auto'class= 'form-group'>
+    <div>        
+        <div style="margin-left:490px">
+            <label><h2>Question Number {{qz.id}}</h2></label>
+        </div>
+        <div style="padding:auto">
+        <div>
+            <label><h3>Question: {{qz.question}}</h3></label>
+        </div>
+        <div class="list-group-item list-group-item-warning" style="margin:auto;padding:auto">
+            <label>Option 1: {{qz.option1}}</label>
+        </div>
+        <div class="list-group-item list-group-item-warning" style="margin:auto;padding:auto">
+            <label>Option 2: {{qz.option2}}</label>
+        </div>
+        <div class="list-group-item list-group-item-warning" style="margin:auto;padding:auto">
+            <label>Option 3: {{qz.option3}}</label>
+        </div>
+        <div class="list-group-item list-group-item-warning" style="margin:auto;padding:auto">
+            <label>Option 4: {{qz.option4}}</label>
+        </div>
+        </div>
+       </div>
+        <div><br>
+            <form action="" name = 'myForm' method="post" onsubmit="return checkAnswer()">
+            {% csrf_token %}
+            <!-- <div style="padding-left:170px">
+            <Strong>Answer: </Strong><input type="text" id='answer' name="answer"><br><br>
+            </div> -->
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text">Answer</span>
+            </div>
+            <input type="text" class="form-control" id='answer',name='answer'>
+            </div>
+        <center><input class = 'btn btn-warning btn-sm' type="submit" value="Submit" /></center><br>        
+        <strong>Result:</strong><center id="res" class="alert alert-info"></center>        
+        </div>
+    </form>  
+    <center><a class = 'btn btn-warning btn' href="/start/details/2">Next</a><br><br> </center>
+    <div></div>     
+</div>
+
+{% include 'partials/footer.html' %}
+<!-- hello from details -->
